@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from 'next/server';
+/* import { NextRequest, NextResponse } from 'next/server';
 import { connectToDatabase } from '@/lib/mongodb';
 
 const todos = [
@@ -1277,4 +1277,4 @@ export async function GET(req: NextRequest) {
       { status: 500 }
     );
   }
-}
+} */

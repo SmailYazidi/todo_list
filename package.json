@@ -8,11 +8,19 @@
     "start": "next start"
   },
   "dependencies": {
+    "@radix-ui/react-toast": "^1.2.15",
+    "bcryptjs": "^3.0.2",
+    "class-variance-authority": "^0.7.1",
+    "install": "^0.13.0",
     "lucide-react": "^0.541.0",
     "mongodb": "^6.18.0",
     "next": "15.5.0",
+    "next-auth": "^4.24.11",
+    "npm": "^11.5.2",
     "react": "19.1.0",
-    "react-dom": "19.1.0"
+    "react-dom": "19.1.0",
+    "react-toast": "^1.0.3",
+    "tailwind-merge": "^3.3.1"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
