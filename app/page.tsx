@@ -1,13 +1,12 @@
 "use client";
 
 import { signIn } from "next-auth/react";
-import { useState } from "react";
+import { useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-
 import * as LucideIcons from "lucide-react";
-import Link from "next/link"; // ✅ Import Link for navigation
 
-export default function LoginPage() {
+// Create a wrapper component that uses useSearchParams
+function LoginForm() {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -39,14 +38,11 @@ export default function LoginPage() {
     }
   };
 
-
-
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
         {/* Header Section */}
         <div className="bg-gradient-to-r from-blue-500 to-blue-600 p-6 text-center">
-         
           <h1 className="text-2xl font-bold text-white mb-2">Admin Login</h1>
           <p className="text-blue-100 text-sm">Enter your password to access the admin panel</p>
         </div>
@@ -122,11 +118,25 @@ export default function LoginPage() {
                 </>
               )}
             </button>
-
-       
           </form>
         </div>
       </div>
     </div>
+  );
+}
+
+// Main component with Suspense boundary
+export default function LoginPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900">
+        <div className="text-center">
+          <LucideIcons.Loader2 size={32} className="animate-spin mx-auto text-blue-500" />
+          <p className="mt-4 text-gray-600 dark:text-gray-400">Loading...</p>
+        </div>
+      </div>
+    }>
+      <LoginForm />
+    </Suspense>
   );
 }
