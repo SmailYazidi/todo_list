@@ -5,10 +5,10 @@ import { ObjectId } from 'mongodb';
 // GET - Fetch single todo
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const { id } = params;
+    const { id } = await params;
     
     if (!ObjectId.isValid(id)) {
       return NextResponse.json(
@@ -40,10 +40,10 @@ export async function GET(
 // PUT - Update todo
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const { id } = params;
+    const { id } = await params;
     
     if (!ObjectId.isValid(id)) {
       return NextResponse.json(
@@ -94,10 +94,10 @@ export async function PUT(
 // PATCH - Toggle completion status
 export async function PATCH(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const { id } = params;
+    const { id } = await params;
     
     if (!ObjectId.isValid(id)) {
       return NextResponse.json(
@@ -142,10 +142,10 @@ export async function PATCH(
 // DELETE - Delete single todo
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const { id } = params;
+    const { id } = await params;
     
     if (!ObjectId.isValid(id)) {
       return NextResponse.json(
