@@ -1,4 +1,4 @@
-/* import { NextRequest, NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { connectToDatabase } from '@/lib/mongodb';
 
 const todos = [
@@ -1261,13 +1261,13 @@ const todos = [
 
 export async function GET(req: NextRequest) {
   try {
-    const { db } = await connectToDatabase();
+   /*  const { db } = await connectToDatabase();
 
     // clear existing docs if you want a fresh insert
     await db.collection('todos').deleteMany({});
 
     // insert all todos
-    await db.collection('todos').insertMany(todos);
+    await db.collection('todos').insertMany(todos); */
 
     return NextResponse.json({ message: 'Todos inserted successfully!' }, { status: 200 });
   } catch (error) {
@@ -1277,4 +1277,4 @@ export async function GET(req: NextRequest) {
       { status: 500 }
     );
   }
-} */
+}
