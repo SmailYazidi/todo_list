@@ -1261,9 +1261,13 @@ const todos = [
 
 export async function GET(req: NextRequest) {
   try {
+
+
+
+
    /*  const { db } = await connectToDatabase();
 
-    // clear existing docs if you want a fresh insert
+    // clear existing docs if
     await db.collection('todos').deleteMany({});
 
     // insert all todos
