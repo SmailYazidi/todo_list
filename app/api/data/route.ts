@@ -1,9 +1,9 @@
+import { NextRequest, NextResponse } from 'next/server';
+import { connectToDatabase } from '@/lib/mongodb';
 
-use todo_list;
-
-
-db.todos.insertMany([
-  // Week 1: Focus on current projects + Java basics
+const todos = [
+  // Week 1: Basic Projects + Java Basics + Docker Intro
+  // Day 1
   {
     title: "تطوير مشروع React صغير (واجهة + state)",
     description: "إنشاء واجهة مستخدم تفاعلية باستخدام React مع إدارة الحالة",
@@ -1255,5 +1255,26 @@ db.todos.insertMany([
     updatedAt: new Date(),
     duration: 90
   }
-]);
+];
 
+
+
+export async function GET(req: NextRequest) {
+  try {
+    const { db } = await connectToDatabase();
+
+    // clear existing docs if you want a fresh insert
+    await db.collection('todos').deleteMany({});
+
+    // insert all todos
+    await db.collection('todos').insertMany(todos);
+
+    return NextResponse.json({ message: 'Todos inserted successfully!' }, { status: 200 });
+  } catch (error) {
+    console.error(error);
+    return NextResponse.json(
+      { message: 'Error inserting todos', error: error instanceof Error ? error.message : 'Unknown error' },
+      { status: 500 }
+    );
+  }
+}
