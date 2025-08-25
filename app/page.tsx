@@ -17,7 +17,7 @@ interface Todo {
 
 type ViewType = 'day' | 'week' | 'month' | 'all';
 type FilterType = 'all' | 'completed' | 'pending';
-
+type Priority = 'low' | 'medium' | 'high';
 export default function TodoApp() {
   const [todos, setTodos] = useState<Todo[]>([]);
   const [loading, setLoading] = useState(true);
@@ -31,11 +31,10 @@ export default function TodoApp() {
   const [formData, setFormData] = useState({
     title: '',
     description: '',
-    priority: 'medium' as const,
+    priority: 'medium' as 'low' | 'medium' | 'high', // Change this line
     dueDate: new Date().toISOString().split('T')[0],
     duration: 30
   });
-
   const priorities = ['low', 'medium', 'high'] as const;
   const durationPresets = [15, 30, 45, 60, 90, 120, 180, 240];
 
@@ -119,18 +118,17 @@ export default function TodoApp() {
   };
 
   // Edit todo
-  const startEdit = (todo: Todo) => {
+   const startEdit = (todo: Todo) => {
     setEditingTodo(todo);
     setFormData({
       title: todo.title,
       description: todo.description || '',
-      priority: todo.priority,
+      priority: todo.priority, // No more type error here
       dueDate: new Date(todo.dueDate).toISOString().split('T')[0],
       duration: todo.duration
     });
     setShowForm(true);
   };
-
   const getPriorityColor = (priority: string) => {
     switch (priority) {
       case 'high': return 'text-red-500 bg-red-50 border-red-200';
