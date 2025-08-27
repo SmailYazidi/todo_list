@@ -8410,15 +8410,14 @@ export async function GET(req: NextRequest) {
   try {
 
 
-
-
+/* 
     const { db } = await connectToDatabase();
 
     // clear existing docs if
     await db.collection('todos').deleteMany({});
 
     // insert all todos
-    await db.collection('todos').insertMany(todos); 
+    await db.collection('todos').insertMany(todos);  */
 
     return NextResponse.json({ message: 'Todos inserted successfully!' }, { status: 200 });
   } catch (error) {
